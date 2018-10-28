@@ -1,1 +1,4 @@
 
+The reason why CODE-1 gives error is because in IF-THEN-ELSE the statement written in the particluar IF or THEN clause should be compatible with the condition checked otherwise simulator won't understand.
+The simulator will understand which statement to execute on true value of condition and which one on false using the suffix mentioned. So that while executing ITE/ITTE it goes over all the statement but doesn't execute the ones which doesn't satisfy condition.
+For example, in CODE-1 the MOV instruction is ususal instruction used in the code, it doesn't specify any special instruction to be excecuted according to condition, Whereas in CODE-2 the ADDLT/MOVLT and SUBGE tells the simulator which statement to execute on LT condition to be true and other one on false LT.
