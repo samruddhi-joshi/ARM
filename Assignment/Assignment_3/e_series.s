@@ -5,8 +5,8 @@
 	 ENTRY 
 __main  FUNCTION
 
-	VMOV.F32 S1, #4  ; y to find e^y
-	VMOV.F32 S2, #15 ; Number of terms in e^y expansion
+	VMOV.F32 S1, #6  ; y to find e^y
+	VMOV.F32 S2, #10 ; Number of terms in e^y expansion
 	VMOV.F32 S3, #1  ; count
 	VMOV.F32 S4, #1  ; temp
 	VMOV.F32 S5, #1  ; result
