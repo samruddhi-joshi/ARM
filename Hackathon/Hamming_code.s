@@ -1,12 +1,16 @@
-    AREA	Hamming, CODE, READONLY
+    	AREA	Hamming, CODE, READONLY
+	import printMsg
 	export __main	 
 	 ENTRY 
 __main  function
 	
 	MOV R8,#0X20000000
+	ADD R8,#4
+	MOV R10,R8
+	MOV R9,#0; counter for no of bytes to be processed
 	
-LOOP
-	LDRB R1, [R8],#4
+Loop
+	LDRB R1, [R8],#1
 
 	; Begin by expanding the 8-bit value to 12-bits, inserting
 	; zeros in the positions for the four check bits (bit 0, bit 1, bit 3
@@ -61,8 +65,14 @@ LOOP
 	AND	R2, R2, #0x80		; Clear all but check bit c3
 	ORR	R0, R0, R2		; Combine check bit c3 with result
 	
+	STRB R0,[R10],#1;
 	
-	B LOOP
+	BL printMsg
+	
+	ADD r9,#1
+	CMP r9,#614400
+	IT LS
+	BLS Loop
 	
 	
 	
