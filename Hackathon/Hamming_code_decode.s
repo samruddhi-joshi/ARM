@@ -1,13 +1,15 @@
-    AREA	Hamming, CODE, READONLY
-	export __main	 
+   	 AREA	Hamming, CODE, READONLY
+	 import printMsg
+	 export __main	 
 	 ENTRY 
 __main  function
 	
 	MOV R8,#0X20000000
-	
-LOOP
-	LDRB R3, [R8],#4
-	
+	ADD R8,#4
+	MOV R10,R8; R10 contains the decoded byte which has tobe stored
+	MOV R9,#0; counter for no of bytes to be processed
+Loop
+	LDRB R3,[R8],#1
 	AND R3, R0, R3
 
 
@@ -83,7 +85,16 @@ LOOP
 	MOV R7, R7, LSL R1
 
 	;Flips the bit in bit 8 of R0
-	EOR R0, R0, R7
+	EOR R0, R0, R7;result in R0
+	
+	STRB R0,[R10],#1;
+
+	BL printMsg	
+
+	ADD r9,#1
+	CMP r9,#614400
+	IT LS
+	BLS Loop
 
 stop	B	stop
     endfunc
