@@ -4,7 +4,7 @@
 	 ENTRY 
 __main  function
 	MOV r2,#0x20000000;    starting address in r0
-	ADD r2,#4;
+	ADD r2,r2,#4;
 	MOV r4,#0; just a counter
 	MOV r3,r2;
 Loop
